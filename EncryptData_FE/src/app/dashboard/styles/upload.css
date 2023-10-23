@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #1f1d58;
+}
+
+.upload {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+    overflow: auto;
+}
+
+.instruction {
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 20px;
+    flex: 1;
+}
+
+.instruction h1 {
+    margin: 0;
+}
+
+.instruction ol {
+    margin: 0;
+    margin-top: 20px;
+}
+
+.instruction li {
+    margin: 10px 0;
+}
+
+.upload-form {
+    flex: 4;
+}
+
+input {
+    cursor: pointer;
+}
+
+.previewFile {
+    display: flex;
+    flex-direction: column;
+    flex: 6;
+}
+
+#uploadForm {
+    padding: 20px;
+}
+
+#uploadForm label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#file {
+   display: none;
+}
+
+.chooseFile {
+    display: inline-flex;
+    align-items: center;
+    margin: 10px 0;
+    border: 2px solid white;
+    padding: 0 10px;
+}
+
+.chooseFile h3 {
+    margin-right: 20px;
+}
+
+#submitButton {
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px 0px;
+    background-color: #4541b9;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#submitButton:hover, #chooseButton:hover {
+    background-color: #1c1973;
+    transition: all 0.2s;
+}
+
+#chooseButton {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px 0px;
+    background-color: #4541b9;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#imagePreview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.uploadFile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex: 1;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+img {
+    object-fit: cover;
+}
