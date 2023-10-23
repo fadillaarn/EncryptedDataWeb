@@ -1,0 +1,6 @@
+Name: Sarah Nurhasna Khairunnisa
+Email: sarah123@gmail.com
+Phone: 0123456789
+Password: Sarah123
+Address: jl. gebang lor no 2345
+Role: User
