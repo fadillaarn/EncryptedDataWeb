@@ -7,6 +7,6 @@ F15
 | Sarah Nurhasna Khairunnisa | 5025211105 |
 | Fadilla Rizky Nurhidayah | 5025211110 |
 
->Analysis Report: https://docs.google.com/document/d/1b2xPlELFfasGak0qUAhZjWmn16gs6-zPImoqQ12OvC0/edit?usp=share_link
+>Analysis Report: [F15_Web Application: Encryption-Decryption](https://drive.google.com/file/d/1KKsYQAgz30c-U0bbHXqotaeuDy2dGonV/view?usp=sharing)
 
->Video: https://drive.google.com/file/d/1Tn7ehyABzHo8jjTvj7b0xy6ivmEciVf9/view?usp=share_link
+>Video: [F15_Web Application Demo](https://drive.google.com/file/d/1kN9Welrpa6gxCaEfUsPzwaKTi4bwGegM/view?usp=sharing)
