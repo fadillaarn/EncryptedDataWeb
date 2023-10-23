@@ -148,6 +148,7 @@ func GetAESDecrypted(encrypted string, key []byte, iv []byte) ([]byte, error) {
 	return ciphertext, nil
 }
 
+// DES Encryption
 func GetDESEncrypted(plaintext string, key []byte, iv []byte) (string, error) {
 	block, err := des.NewCipher(key[:8])
 	if err != nil {
@@ -164,6 +165,7 @@ func GetDESEncrypted(plaintext string, key []byte, iv []byte) (string, error) {
 	return base64.StdEncoding.EncodeToString(ciphertext), nil
 }
 
+// DES Decryption
 func GetDESDecrypted(encrypted string, key []byte, iv []byte) ([]byte, error) {
 	ciphertext, err := base64.StdEncoding.DecodeString(encrypted)
 	if err != nil {
@@ -176,7 +178,7 @@ func GetDESDecrypted(encrypted string, key []byte, iv []byte) ([]byte, error) {
 	}
 
 	if len(ciphertext)%des.BlockSize != 0 {
-		return nil, fmt.Errorf("block size cannot be zero")
+		return nil, fmt.Errorf("invalid block size")
 	}
 
 	mode := cipher.NewCBCDecrypter(block, iv[:8]) // Use the first 8 bytes of IV
@@ -184,6 +186,38 @@ func GetDESDecrypted(encrypted string, key []byte, iv []byte) ([]byte, error) {
 
 	// Unpadding the plaintext
 	plaintext := PKCS5UnPadding(ciphertext)
+
+	return plaintext, nil
+}
+
+// RC4 Encryption
+func EncryptRC4(plaintext string, key []byte) (string, error) {
+	cipher, err := rc4.NewCipher(key)
+	if err != nil {
+		return "", err
+	}
+
+	plaintextBytes := []byte(plaintext)
+	ciphertext := make([]byte, len(plaintextBytes))
+	cipher.XORKeyStream(ciphertext, plaintextBytes)
+
+	return base64.StdEncoding.EncodeToString(ciphertext), nil
+}
+
+// RC4 Decryption
+func DecryptRC4(encodedString string, key []byte) ([]byte, error) {
+	cipher, err := rc4.NewCipher(key)
+	if err != nil {
+		return []byte(""), err
+	}
+
+	ciphertextBytes, err := base64.StdEncoding.DecodeString(encodedString)
+	if err != nil {
+		return []byte(""), fmt.Errorf("base64 decoding error: %v", err)
+	}
+
+	plaintext := make([]byte, len(ciphertextBytes))
+	cipher.XORKeyStream(plaintext, ciphertextBytes)
 
 	return plaintext, nil
 }
@@ -305,36 +339,6 @@ func DecryptData(filename string, aes dto.EncryptRequest, method string) ([]byte
 	TotalTime = TotalTime + method
 
 	return decryptedData, TotalTime, nil
-}
-
-func EncryptRC4(plaintext string, key []byte) (string, error) {
-	cipher, err := rc4.NewCipher(key)
-	if err != nil {
-		return "", err
-	}
-
-	plaintextBytes := []byte(plaintext)
-	ciphertext := make([]byte, len(plaintextBytes))
-	cipher.XORKeyStream(ciphertext, plaintextBytes)
-
-	return base64.StdEncoding.EncodeToString(ciphertext), nil
-}
-
-func DecryptRC4(encodedString string, key []byte) ([]byte, error) {
-	cipher, err := rc4.NewCipher(key)
-	if err != nil {
-		return []byte(""), err
-	}
-
-	ciphertextBytes, err := base64.StdEncoding.DecodeString(encodedString)
-	if err != nil {
-		return []byte(""), fmt.Errorf("base64 decoding error: %v", err)
-	}
-
-	plaintext := make([]byte, len(ciphertextBytes))
-	cipher.XORKeyStream(plaintext, ciphertextBytes)
-
-	return plaintext, nil
 }
 
 func PKCS5Padding(ciphertext []byte, blockSize int) []byte {
